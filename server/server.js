@@ -1,6 +1,6 @@
 // * [/server.js] - entry point to the app
 
-const env = require("dotenv").config();
+require("dotenv").config();
 
 // * require express.js
 const express = require("express");
@@ -18,10 +18,10 @@ const PORT = 8080;
 // * set up and open the database
 const db = require("./db/database");
 db.setupConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "socialdevproject"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE
 });
 db.openConnection();
 
