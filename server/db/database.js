@@ -1,23 +1,38 @@
 const mysql = require("mysql");
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "socialdevproject"
-});
 
-connection.connect();
+const db = (function () {
 
-connection.query('SELECT * FROM users', function (err, rows, fields) {
-    if (err) throw err
+  var connection;
 
-    console.log('connected as id ' + connection.threadId);
-    console.log(rows.length);
+  function setupConnection (obj) {
+    connection = mysql.createConnection(obj);
+  }
 
-    // When done with the connection, release it.
-    // connection.release();
-    
-    // console.log('The solution is: ', rows[0].solution)
-  })
+  function openConnection() {
+    connection.connect();
+  }
 
-connection.end();
+  function closeConnection() {
+    connection.end();
+  }
+
+  function runQuery(query, cb) {
+    connection.query(query, (err, rows, fields) => {
+      if(err) {
+        console.log(err);
+      } else {
+        cb(rows, fields);
+      }
+    });
+  }
+
+  return {
+    openConnection,
+    closeConnection,
+    setupConnection,
+    runQuery
+  };
+
+})();
+
+module.exports = db;

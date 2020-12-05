@@ -1,5 +1,7 @@
 // * [/server.js] - entry point to the app
 
+const env = require("dotenv").config();
+
 // * require express.js
 const express = require("express");
 
@@ -12,6 +14,16 @@ app.use(cors());
 
 // * set the port we're listening on
 const PORT = 8080;
+
+// * set up and open the database
+const db = require("./db/database");
+db.setupConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "socialdevproject"
+});
+db.openConnection();
 
 // * setup API routes
 const api_routes = require("./routes/api");
@@ -30,6 +42,7 @@ app.listen(PORT, () => {
 // * graceful shutdown example
 process.on('SIGTERM', () => {
     debug('SIGTERM signal received: closing HTTP server')
+    db.closeConnection();
     server.close(() => {
       debug('HTTP server closed')
     })

@@ -14,33 +14,7 @@ const views_path = path.join(__dirname, "/../views");
 
 // * create a home web route
 router.get("/", (req, res) => {
-    // res.send("Home!");
-
-    const mysql = require("mysql");
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "socialdevproject"
-    });
-
-    connection.connect();
-
-    connection.query('SELECT * FROM users', function (err, rows, fields) {
-        if (err) throw err
-
-        console.log('connected as id ' + connection.threadId);
-        console.log(rows.length);
-
-        // When done with the connection, release it.
-        // connection.release();
-        
-        // console.log('The solution is: ', rows[0].solution)
-    })
-
-    connection.end();
-
-
+    res.send("Homepage"); 
 });
 
 // * POST requests
