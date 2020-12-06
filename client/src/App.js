@@ -11,9 +11,9 @@ import HeaderLoggedOut from "./components/Header/LoggedOut/HeaderLoggedOut";
 import Profile from "./containers/Profile/Profile";
 
 class App extends Component {
-    render () {
+    render() {
         return (
-            <div id="app" className="bg-gray-100 h-screen">
+            <div id="app" className="bg-gray-100 min-h-screen">
                 {/* do logic to determine if signed in or signed out */}
                 <HeaderLoggedIn />
                 <main className="container xl:container">
