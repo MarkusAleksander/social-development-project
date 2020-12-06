@@ -6,6 +6,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
+      xs: '480px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -133,7 +134,9 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
     },
-    container: {},
+    container: {
+      center: true
+    },
     cursor: {
       auto: 'auto',
       default: 'default',

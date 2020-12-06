@@ -13,9 +13,12 @@ import Profile from "./containers/Profile/Profile";
 class App extends Component {
     render () {
         return (
-            <div id="app">
+            <div id="app" className="bg-gray-100 h-screen">
                 {/* do logic to determine if signed in or signed out */}
                 <HeaderLoggedIn />
+                <main className="container xl:container">
+                    <Profile />
+                </main>
             </div>
         )
     }
