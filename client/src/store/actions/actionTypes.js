@@ -1,0 +1,9 @@
+// * AUTH ACTIONS
+export const AUTH_START = "AUTH_START";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAIL = "AUTH_FAIL";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
+
+export const AUTH_REFRESH_START = "AUTH_REFRESH_START";
+export const AUTH_REFRESH_SUCCESS = "AUTH_REFRESH_SUCCESS";
+export const AUTH_REFRESH_FAIL = "AUTH_REFRESH_FAIL";
