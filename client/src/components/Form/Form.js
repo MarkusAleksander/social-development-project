@@ -14,7 +14,7 @@ const Form = (props) => {
             config: props.formConfig[key]
         });
     }
-
+    
     return (
         <form className="py-2" onSubmit={props.onSubmitHandler}>
             {
@@ -31,6 +31,11 @@ const Form = (props) => {
                                 props.inputChangedHandler(event, formElement.id)
                             }}
                         />
+                        {formElement.config.displayMessaging && formElement.config.displayMessaging.length ? (
+                            formElement.config.displayMessaging.map(message => (<p key={message}>{message}</p>))
+                            )
+                             : null
+                        }
                     </div>
                 ))
             }

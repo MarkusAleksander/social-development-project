@@ -7,11 +7,18 @@ const LoginFormConfig = {
         },
         value: "",
         validation: {
-            required: true,
-            isEmail: true
+            required: {
+                value: true,
+                message: "Email is required"
+            },
+            isEmail: {
+                value: true,
+                message: "Email must be a valid email format"
+            },
         },
         valid: false,
-        touched: false
+        touched: false,
+        displayMessaging: []
     },
     password: {
         elementType: "input",
@@ -21,11 +28,18 @@ const LoginFormConfig = {
         },
         value: "",
         validation: {
-            required: true,
-            minLength: 6
+            required: {
+                value:true,
+                message: "Password is required"
+            },
+            minLength: {
+                value:6,
+                message: "Surname must be 6 characters or more"
+            },
         },
         valid: false,
-        touched: false
+        touched: false,
+        displayMessaging: []
     }
 }
 

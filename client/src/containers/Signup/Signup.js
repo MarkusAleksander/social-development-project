@@ -23,15 +23,20 @@ class Signup extends Component {
     }
 
     inputChangedHandler = (event, inputId) => {
+
+        let validity = checkValidity(
+            event.target.value,
+            this.state.signupFormConfig[inputId].validation,
+            this.state.signupFormConfig
+        );
+
         const updatedFormElement = updateObject(this.state.signupFormConfig[inputId], {
             value: event.target.value,
-            valid: checkValidity(
-                event.target.value,
-                this.state.signupFormConfig[inputId].validation
-            ),
+            valid: validity.isValid,
+            displayMessaging: validity.displayMessaging,
             touched: true
         });
-
+        
         const updatedInputForm = updateObject(this.state.signupFormConfig, {
             [inputId]: updatedFormElement
         });

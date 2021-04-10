@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import Form from "./../../components/Form/Form";
 import Button from "./../../components/UI/Button/Button";
 
-import LoginFormConfig from "./LoginFormConfig";
+import loginFormConfig from "./LoginFormConfig";
 import IntroDisclaimer from "./../../components/IntroDisclaimer/IntroDisclaimer";
 
 import { updateObject, checkValidity } from "./../../utility/index";
 
 class Login extends Component {
     state = {
-        LoginFormConfig: LoginFormConfig,
+        loginFormConfig: loginFormConfig,
         formIsValid: false
     }
 
@@ -23,16 +23,21 @@ class Login extends Component {
     }
 
     inputChangedHandler = (event, inputId) => {
-        const updatedFormElement = updateObject(this.state.LoginFormConfig[inputId], {
+
+        let validity = checkValidity(
+            event.target.value,
+            this.state.loginFormConfig[inputId].validation,
+            this.state.loginFormConfig
+        );
+
+        const updatedFormElement = updateObject(this.state.loginFormConfig[inputId], {
             value: event.target.value,
-            valid: checkValidity(
-                event.target.value,
-                this.state.LoginFormConfig[inputId].validation
-            ),
+            valid: validity.isValid,
+            displayMessaging: validity.displayMessaging,
             touched: true
         });
 
-        const updatedInputForm = updateObject(this.state.LoginFormConfig, {
+        const updatedInputForm = updateObject(this.state.loginFormConfig, {
             [inputId]: updatedFormElement
         });
 
@@ -43,7 +48,7 @@ class Login extends Component {
         }
 
         this.setState({
-            LoginFormConfig: updatedInputForm,
+            loginFormConfig: updatedInputForm,
             formIsValid: formIsValid
         });
 
@@ -55,7 +60,7 @@ class Login extends Component {
                 <div className="max-w-md bg-white p-4 rounded-2xl shadow-2xl">
                     <IntroDisclaimer />
                     <Form
-                        formConfig={this.state.LoginFormConfig}
+                        formConfig={this.state.loginFormConfig}
                         onSubmitHandler={this.onSubmitHandler}
                         inputChangedHandler={this.inputChangedHandler}
                     />
